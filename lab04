@@ -1,0 +1,48 @@
+class FlightTable:
+    def __init__(self):
+        self.data = [
+            ("P1", "VSCode", 100, "MID"),
+            ("P23", "Eclipse", 234, "MID"),
+            ("P93", "Chrome", 189, "High"),
+            ("P42", "JDK", 9, "High"),
+            ("P9", "CMD", 7, "High"),
+            ("P87", "NotePad", 23, "Low")
+        ]
+
+    def display_table(self):
+        print("Flight Table")
+        print("{:<5} {:<10} {:<15} {:<10}".format("P_ID", "Process", "Start Time (ms)", "Priority"))
+        print("="*45)
+        for row in self.data:
+            print("{:<5} {:<10} {:<15} {:<10}".format(row[0], row[1], row[2], row[3]))
+        print("="*45)
+
+    def sort_table(self, key):
+        if key == 1:
+            self.data.sort(key=lambda x: x[0])
+        elif key == 2:
+            self.data.sort(key=lambda x: x[2])
+        elif key == 3:
+            self.data.sort(key=lambda x: x[3])
+        else:
+            print("Invalid sorting option.")
+
+    def start(self):
+        while True:
+            print("\nSorting Options:")
+            print("1. Sort by P_ID")
+            print("2. Sort by Start Time")
+            print("3. Sort by Priority")
+
+            choice = int(input("Enter your choice (1/2/3): "))
+            self.sort_table(choice)
+            self.display_table()
+
+            another_choice = input("Do you want to sort again? (y/n): ")
+            if another_choice.lower() != 'y':
+                print("Exiting the program.")
+                break
+
+if __name__ == "__main__":
+    flight_table = FlightTable()
+    flight_table.start()
